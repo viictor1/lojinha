@@ -1,4 +1,4 @@
-package com.vitin.dscatalog.Resources;
+package com.vitin.dscatalog.controllers;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import com.vitin.dscatalog.services.CategoryService;
 
 @RestController
 @RequestMapping(value = "/categories")
-public class CategoryResources {
+public class CategoryController {
 	
 	@Autowired
 	private CategoryService service;
