@@ -16,6 +16,8 @@ import com.vitin.catalog.repositories.CategoryRepository;
 import com.vitin.catalog.services.exception.DatabaseException;
 import com.vitin.catalog.services.exception.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class CategoryService {
 	
@@ -43,7 +45,20 @@ public class CategoryService {
 		
 		return new CategoryDTO(entity);
 	}
-
+	
+	@Transactional
+	public CategoryDTO update(Long id, CategoryDTO dto) {
+		try {
+			Category entity = repository.getReferenceById(id);
+			entity.setName(dto.getName());
+			entity = repository.save(entity);
+			return new CategoryDTO(entity);
+		}
+		catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Entity not Found");
+		}
+	}
+	
 	public void delete(Long id) {
 		try {
 			repository.deleteById(id);
@@ -55,4 +70,5 @@ public class CategoryService {
 			throw new DatabaseException("Integrity violation");
 		}
 	}
+
 }
