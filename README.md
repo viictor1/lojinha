@@ -1,14 +1,15 @@
 # lojinha
 Projeto para aprender a usar Java Spring Boot
 
-#Tecnologias utilizadas
+## Tecnologias utilizadas
   - Java
   - Maven
   - Spring Boot
   - Banco de dados H2
   - JPA/ Hibernate
 
-#Habilidades desenvolvidas
+## Habilidades desenvolvidas
   - CRUD
   - Tratamentos de exeções
   - Dados de Auditoria
+  - Paginação
