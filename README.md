@@ -7,3 +7,8 @@ Projeto para aprender a usar Java Spring Boot
   - Spring Boot
   - Banco de dados H2
   - JPA/ Hibernate
+
+#Habilidades desenvolvidas
+  - CRUD
+  - Tratamentos de exeções
+  - Dados de Auditoria
