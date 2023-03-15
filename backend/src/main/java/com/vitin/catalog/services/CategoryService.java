@@ -5,13 +5,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vitin.catalog.dto.CategoryDTO;
 import com.vitin.catalog.entities.Category;
 import com.vitin.catalog.repositories.CategoryRepository;
-import com.vitin.catalog.services.exception.EntityNotFoundException;
+import com.vitin.catalog.services.exception.DatabaseException;
+import com.vitin.catalog.services.exception.ResourceNotFoundException;
 
 @Service
 public class CategoryService {
@@ -28,7 +31,7 @@ public class CategoryService {
 	@Transactional(readOnly = true)
 	public CategoryDTO findById(Long id) {
 		Optional <Category> obj = repository.findById(id);
-		Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not Found"));
+		Category entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not Found"));
 		return new CategoryDTO(entity);
 	}
 	
@@ -39,5 +42,17 @@ public class CategoryService {
 		entity = repository.save(entity);
 		
 		return new CategoryDTO(entity);
+	}
+
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		}
+		catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException("Id Not Found "+ id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Integrity violation");
+		}
 	}
 }
