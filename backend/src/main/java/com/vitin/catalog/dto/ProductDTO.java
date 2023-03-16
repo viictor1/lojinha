@@ -46,6 +46,10 @@ public class ProductDTO implements Serializable {
 
 	public ProductDTO() {
 	}
+	
+	public List<CategoryDTO> getCategories(){
+		return this.list;
+	}
 
 	public Long getId() {
 		return id;

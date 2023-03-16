@@ -88,6 +88,10 @@ public class Product implements Serializable {
 		return date;
 	}
 	
+	public void setDate(Instant date) {
+		this.date = date;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
