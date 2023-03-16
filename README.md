@@ -1,5 +1,5 @@
 # lojinha
-Projeto para aprender a usar Java Spring Boot
+Projeto de um bootcamp para aprender a usar Java Spring Boot
 
 ## Tecnologias utilizadas
   - Java
